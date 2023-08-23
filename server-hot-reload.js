@@ -75,14 +75,26 @@ function toggleServerReload() {
 
 function hashCode(html) {
     let hash = 0, i, chr;
+    
+    // Check if the input string is empty, if so, return 0
     if (html.length === 0) return hash;
+    
+    // Iterate over each character in the input string
     for (i = 0; i < html.length; i++) {
+        // Get the Unicode code point of the current character
         chr = html.charCodeAt(i);
+        
+        // Update the hash using a simple hash function
         hash = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
+        
+        // Ensure the hash is a 32-bit integer (bitwise OR with 0)
+        hash |= 0;
     }
+    
+    // Return the computed hash value
     return hash;
 }
+
 
 async function downloadHtml(url) {
     if (!active) {
